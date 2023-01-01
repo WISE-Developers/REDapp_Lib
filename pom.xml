@@ -32,24 +32,38 @@
     </repository>
   </distributionManagement>
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>5.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>5.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-api</artifactId>
+		<version>5.8.2</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-engine</artifactId>
+        <version>5.8.2</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
+	<dependency>
+		<groupId>org.junit.vintage</groupId>
+		<artifactId>junit-vintage-engine</artifactId>
+        <version>5.8.2</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+	<dependency>
+		<groupId>org.junit.platform</groupId>
+		<artifactId>junit-platform-launcher</artifactId>
+		<version>1.8.2</version>
+		<scope>test</scope>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
     <dependency>
       <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-commons</artifactId>
+      <artifactId>junit-platform-runner</artifactId>
       <version>1.8.2</version>
       <scope>test</scope>
     </dependency>
@@ -57,7 +71,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-compress</artifactId>
-      <version>1.20</version>
+      <version>1.21</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
     <dependency>
@@ -69,21 +83,21 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>4.1.2</version>
+      <version>5.2.1</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
-      <version>4.1.2</version>
+      <version>5.2.1</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
     <dependency>
       <groupId>org.apache.xmlbeans</groupId>
       <artifactId>xmlbeans</artifactId>
-      <version>4.0.0</version>
+      <version>5.0.3</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
@@ -101,17 +115,17 @@
       <artifactId>jaxb-api</artifactId>
       <version>2.3.1</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>3.0.0</version>
-    </dependency>
+	<!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
+	<dependency>
+		<groupId>com.sun.xml.bind</groupId>
+		<artifactId>jaxb-impl</artifactId>
+		<version>3.0.2</version>
+	</dependency>
     <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-core</artifactId>
-      <version>3.0.0</version>
+      <version>3.0.2</version>
     </dependency>
     <dependency>
       <groupId>ca.hss</groupId>
@@ -120,13 +134,18 @@
     </dependency>
     <dependency>
       <groupId>ca.hss.times</groupId>
-      <artifactId>WTime</artifactId>
+      <artifactId>wtime</artifactId>
       <version>2.5.0-6</version>
     </dependency>
     <dependency>
-      <groupId>ca.cwfgm</groupId>
-      <artifactId>Fuel</artifactId>
-      <version>7.2021.7-2</version>
+      <groupId>ca.wise</groupId>
+      <artifactId>fuel</artifactId>
+      <version>7.2022.12.00</version>
+    </dependency>
+    <dependency>
+      <groupId>ca.wise</groupId>
+      <artifactId>weather</artifactId>
+      <version>7.2022.12.00</version>
     </dependency>
   </dependencies>
   
