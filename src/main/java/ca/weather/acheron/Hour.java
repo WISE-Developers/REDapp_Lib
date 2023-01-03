@@ -41,13 +41,14 @@ public class Hour {
 	private double rh;
 	private double precip;
 	private double ws;
+	private double wg; // gust
 	private double wd;
 	private boolean interpolated;
 	private boolean error = false;
 	private static final DecimalFormat formatter = new DecimalFormat("#.#");
 	public static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
-	Hour(String date, int hour, double temp, double rh, double precip, double ws, double wd) {
+	Hour(String date, int hour, double temp, double rh, double precip, double ws, double wg, double wd) {
 		this.date = Calendar.getInstance();
 		synchronized (dateFormatter) {
 			try {
@@ -61,17 +62,19 @@ public class Hour {
 		this.rh = rh;
 		this.precip = precip;
 		this.ws = ws;
+		this.wg = wg;
 		this.wd = wd;
 		this.interpolated = false;
 	}
 
-	Hour(Calendar date, double temp, double rh, double precip, double ws, double wd) {
+	Hour(Calendar date, double temp, double rh, double precip, double ws, double wg, double wd) {
 		this.date = date;
 		this.date.set(Calendar.MINUTE, 0);
 		this.temp = temp;
 		this.rh = rh;
 		this.precip = precip;
 		this.ws = ws;
+		this.wg = wg;
 		this.wd = wd;
 		this.interpolated = false;
 	}
@@ -178,6 +181,15 @@ public class Hour {
 	}
 
 	/**
+	 * Get this hours wind gust.
+	 * 
+	 * @return the wind gust
+	 */
+	public double getWindGust() {
+		return wg;
+	}
+
+	/**
 	 * Get this hours wind direction.
 	 * 
 	 * @return the wind direction
@@ -193,7 +205,7 @@ public class Hour {
 	 * @throws IOException thrown if the file is not writable
 	 */
 	private void writeToFile(BufferedWriter wrtr) throws IOException {
-		wrtr.write(getDate() + "," + getHour() + "," + formatter.format(temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(ws) + "," + formatter.format(wd) + "\r\n");
+		wrtr.write(getDate() + "," + getHour() + "," + formatter.format(temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(ws) + "," + formatter.format(wg) + "," + formatter.format(wd) + "\r\n");
 	}
 
 	/**
@@ -204,11 +216,11 @@ public class Hour {
 	 * @throws IOException thrown if the file is not writable
 	 */
 	private void writeToFile(BufferedWriter wrtr, int houroverride) throws IOException {
-		wrtr.write(getDate() + "," + houroverride + "," + formatter.format(temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(ws) + "," + formatter.format(wd) + "\r\n");
+		wrtr.write(getDate() + "," + houroverride + "," + formatter.format(temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(ws) + "," + formatter.format(wg) + "," + formatter.format(wd) + "\r\n");
 	}
 
 	private static void writeHeader(BufferedWriter wrtr) throws IOException {
-		wrtr.write("hourly,hour,temp,rh,precip,ws,wd\r\n");
+		wrtr.write("hourly,hour,temp,rh,precip,ws,wg,wd\r\n");
 	}
 
 	static void writeListToFile(String path, List<Hour> list) throws IOException {
@@ -242,7 +254,7 @@ public class Hour {
 		int lasthour = last.getHour();
 		while (lasthour < 23) {
 			lasthour++;
-			Hour newlast = new Hour(last.getDate(), lasthour, last.getTemperature(), last.getRelativeHumidity(), 0, last.getWindSpeed(), last.getWindDirection());
+			Hour newlast = new Hour(last.getDate(), lasthour, last.getTemperature(), last.getRelativeHumidity(), 0, last.getWindSpeed(), last.getWindGust(), last.getWindDirection());
 			newlast.writeToFile(bw);
 		}
 		bw.close();
