@@ -40,6 +40,8 @@ public class Day {
 	private double precip;
 	private double min_ws;
 	private double max_ws;
+	private double min_wg;
+	private double max_wg;
 	private double wd;
 	private static final DecimalFormat formatter = new DecimalFormat("#.#");
 	
@@ -51,6 +53,19 @@ public class Day {
 		this.precip = precip;
 		this.min_ws = minWs;
 		this.max_ws = maxWs;
+		this.wd = wd;
+	}
+	
+	Day(String date, double minTemp, double maxTemp, double rh, double precip, double minWs, double maxWs, double minGust, double maxGust, double wd) {
+		this.date = date;
+		this.min_temp = minTemp;
+		this.max_temp = maxTemp;
+		this.rh = rh;
+		this.precip = precip;
+		this.min_ws = minWs;
+		this.max_ws = maxWs;
+		this.min_wg = minGust;
+		this.max_wg = maxGust;
 		this.wd = wd;
 	}
 	
@@ -118,6 +133,24 @@ public class Day {
 	}
 	
 	/**
+	 * Get this days minimum wind gust.
+	 * 
+	 * @return the minimum wind gust
+	 */
+	public double getMinWindGust() {
+		return min_wg;
+	}
+	
+	/**
+	 * Get this days maximum wind gust.
+	 * 
+	 * @return the maximum wind gust
+	 */
+	public double getMaxWindGust() {
+		return max_wg;
+	}
+	
+	/**
 	 * Get this days average wind direction.
 	 * 
 	 * @return the average wind direction
@@ -133,7 +166,7 @@ public class Day {
 	 * @throws IOException thrown if the file is unwritable
 	 */
 	public void writeToFile(BufferedWriter wrtr) throws IOException {
-		wrtr.write(date + "," + formatter.format(min_temp) + "," + formatter.format(max_temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(min_ws) + "," + formatter.format(max_ws) + "," + formatter.format(wd) + "\r\n");
+		wrtr.write(date + "," + formatter.format(min_temp) + "," + formatter.format(max_temp) + "," + formatter.format(rh) + "," + formatter.format(precip) + "," + formatter.format(min_ws) + "," + formatter.format(max_ws) + "," + formatter.format(min_wg) + "," + formatter.format(max_wg) + "," + formatter.format(wd) + "\r\n");
 	}
 	
 	/**
@@ -155,6 +188,9 @@ public class Day {
 	}
 	
 	private static void writeHeader(BufferedWriter wrtr) throws IOException {
-		wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,wd\r\n");
+        if (min_gust > 0 && max_gust > 0)
+			wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,min_gust,max_gust,wd\r\n");
+		else
+			wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,wd\r\n");
 	}
 }
