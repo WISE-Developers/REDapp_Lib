@@ -188,9 +188,6 @@ public class Day {
 	}
 	
 	private static void writeHeader(BufferedWriter wrtr) throws IOException {
-        if (min_gust > 0 && max_gust > 0)
-			wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,min_gust,max_gust,wd\r\n");
-		else
-			wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,wd\r\n");
+		wrtr.write("daily,min_temp,max_temp,rh,precip,min_ws,max_ws,min_gust,max_gust,wd\r\n");
 	}
 }
