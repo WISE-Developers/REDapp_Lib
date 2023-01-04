@@ -449,6 +449,7 @@ public class LocationWeather {
 									rh_forecast.get(member + 1),
 									apcp_forecast.get(member + 1),
 									wind_forecast.get(member + 1),
+									-1.0,
 									wdir_forecast.get(member + 1)));
 				} catch (ModelDoesNotExistException e) {
 				}
@@ -485,7 +486,7 @@ public class LocationWeather {
 			//save the current hours forecast
 			//store the hours 50th percentile data
 			Hour h = new Hour(tm2, (int) forecast_local_hr, hours_temp_50, hours_rh_50,
-			        ignorePrecip ? 0.0 : hours_apcp_50, hours_wind_50, hours_wdir);
+			        ignorePrecip ? 0.0 : hours_apcp_50, hours_wind_50, -1.0, hours_wdir);
 			//check to see if any of the imported values were invalid.
 			if (hours_rh_50 < 0.0 || hours_rh_50 > 100.0 ||
 			        hours_temp_50 < -50.0 || hours_temp_50 > 60.0 ||
@@ -544,7 +545,7 @@ public class LocationWeather {
 				Calendar c2 = (Calendar)c.clone();
 				c2.add(Calendar.DAY_OF_YEAR, dayOffset);
 				String tm2 = format.format(c2.getTime());
-				Hour h = new Hour(tm2, (int)data50.getHour() + j, temp, rh, 0, wind, wdir);
+				Hour h = new Hour(tm2, (int)data50.getHour() + j, temp, rh, 0, wind, -1.0, wdir);
 				h.setInterpolated(true);
 				hour_data.add(insertAt, h);
 				insertAt++;
@@ -764,7 +765,7 @@ public class LocationWeather {
 				Calendar c2 = (Calendar)c.clone();
 				c2.add(Calendar.DAY_OF_YEAR, dayOffset);
 				String tm2 = format.format(c2.getTime());
-				Hour h = new Hour(tm2, (int)data.getHour() + k, temper, rher, 0, winder, wdir);
+				Hour h = new Hour(tm2, (int)data.getHour() + k, temper, rher, 0, winder, -1.0, wdir);
 				h.setInterpolated(true);
 				hours2.add(insertAt, h);
 				insertAt++;
